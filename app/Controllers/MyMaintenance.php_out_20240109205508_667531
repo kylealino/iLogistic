@@ -14,15 +14,25 @@ class MyMaintenance extends BaseController
         $this->mymaintenance =  new MyMaintenanceModel();
     }
 
-    public function index(){
-      $data = $this->mymaintenance->coa_charges();
-      return view('maintenance/coa-main',$data);
+    public function index()
+    {
+		$data = $this->mymaintenance->coa_recs();
+		return view('maintenance/coa-main',$data);
     } 
     
+    // public function coa_recs(){
+    //     $txtsearchedrec = $this->request->getVar('txtsearchedrec');
+    //     $mpages = $this->request->getVar('mpages');
+    //     $mpages = (empty($mpages) ? 0: $mpages);
+    //     $data = $this->mymaintenance->coa_recs($mpages,20,$txtsearchedrec);
+    //     return view('maintenance/coa-main',$data);
+    // }
+
     public function coa_sv(){
       $this->mymaintenance->coa_sv();
     }
 
+    
     public function coa_getorg(){ 
 
       $term = $this->request->getVar('term');
@@ -84,12 +94,6 @@ class MyMaintenance extends BaseController
       $qry->freeResult();
       echo json_encode($autoCompleteResult);
 
-    }
-    
-    public function coa_recs() 
-    { 
-      $data = $this->mymaintenance->coa_recs(1, 10);
-      return view('maintenance/coa-recs',$data);
     }
 
 } 

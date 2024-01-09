@@ -48,7 +48,5 @@ $routes->post('mymd-charges-profile-save', 'Md_charges::profile_save',['filter' 
 // COA Maintenance per company mymaintenance-coa
 $routes->get('mymaintenance-coa', 'MyMaintenance::index',['filter' => 'myauthuser']);
 $routes->post('mymaintenance-coa-sv', 'MyMaintenance::coa_sv',['filter' => 'myauthuser']);
-$routes->post('mymaintenance-coa-recs', 'MyMaintenance::coa_recs',['filter' => 'myauthuser']);
-$routes->post('mymaintenance-coa-recs-vw', 'MyMaintenance::coa_recs_vw',['filter' => 'myauthuser']);
 $routes->get('mymaintenance-coa-getorg', 'MyMaintenance::coa_getorg',['filter' => 'myauthuser']);
 $routes->get('mymaintenance-coa-getservice', 'MyMaintenance::coa_getservice',['filter' => 'myauthuser']);

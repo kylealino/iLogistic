@@ -4,9 +4,6 @@ $request = \Config\Services::request();
 $mylibzsys = model('App\Models\MyLibzSysModel');
 echo view('templates/meheader01');
 
-$mtkn_org = $request->getVar('mtkn_org');
-$mtkn_serv = $request->getVar('mtkn_serv');
-
 ?>
 
 
@@ -42,11 +39,11 @@ $mtkn_serv = $request->getVar('mtkn_serv');
                             <div class="row">
                                 <div class="col-6  mt-3">
                                     <h6 class="card-title p-0">Select Organization: <span class="text-danger"> *</span></h6>
-                                    <input type="text" id="txt_org" name="txt_org" placeholder="Please select the organization" class="form-control form-control-sm thick-border" value="<?=$mtkn_org;?>"/>
+                                    <input type="text" id="txt_org" name="txt_org" placeholder="Please select the organization" class="form-control form-control-sm thick-border"/>
                                 </div>
                                 <div class="col-6  mt-3">
                                     <h6 class="card-title p-0">Select Service: <span class="text-danger"> *</span></h6>
-                                    <input type="text" id="txt_service" name="txt_service" placeholder="Please select a service" class="form-control form-control-sm thick-border" value="<?=$mtkn_serv;?>"/>
+                                    <input type="text" id="txt_service" name="txt_service" placeholder="Please select a service" class="form-control form-control-sm thick-border" />
                                 </div>
                                 <div class="col-12 mt-3">
                                     <h6 class="card-title p-0">Assign Charges:</h6>
@@ -67,8 +64,7 @@ $mtkn_serv = $request->getVar('mtkn_serv');
                                                 <?php if (is_array($rlist) && !empty($rlist)): ?>
                                                 <?php $nn = 1; foreach($rlist as $row): ?>
                                                 <tr>
-                                                    
-                                                    <td nowrap="nowrap"><input type="checkbox"  class="mycheckbox green-cb fs-2" style="scale:1.3" data-id="<?=$row['charge_desc'];?>" value="<?=$row['charge_desc'];?>" checked></td>
+                                                    <td nowrap="nowrap"><input type="checkbox"  class="mycheckbox green-cb fs-2" style="scale:1.3" data-id="<?=$row['charge_desc'];?>" value="<?=$row['charge_desc'];?>"></td>
                                                     <td><?=$row['charge_desc'];?></td>
                                                     <td><?=$row['charge_type'];?></td>
                                                     <td><?=$row['charge_basis'];?></td>
@@ -97,7 +93,9 @@ $mtkn_serv = $request->getVar('mtkn_serv');
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div id="my-coa-vw"></div>
+                                <div class="col-6">
+                                    <input type="text" id="txt_fg_code" name="txt_fg_code" class="form-control form-control-sm thick-border" value="<?=$fg_code;?>"/>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -201,7 +199,7 @@ echo view('templates/mefooter01');
 
             var organization = jQuery('#txt_org').val();
             var service = jQuery('#txt_service').val();
-            var charge = $('input:checkbox.mycheckbox:checked').map(function () {
+            var checkedValues = $('input:checkbox.mycheckbox:checked').map(function () {
                 return { id: $(this).data('id'), value: $(this).val() };
             }).get();
            
@@ -209,7 +207,7 @@ echo view('templates/mefooter01');
             var mparam = {
                 organization:organization,
                 service:service,
-                charge:charge
+                checkedValues:checkedValues
 
             }; 
 
@@ -239,23 +237,10 @@ echo view('templates/mefooter01');
             return false;
         }  //end try
 
-    mymaintenance_coa_recs();
-    function mymaintenance_coa_recs(mtkn_coa) { 
-        var ajaxRequest;
 
-        ajaxRequest = jQuery.ajax({
-            url: "<?=site_url();?>mymaintenance-coa-recs",
-            type: "post",
-            data: {
-                mtkn_coa: mtkn_coa
-            }
-        });
 
-        // Deal with the results of the above ajax call
-        ajaxRequest.done(function(response, textStatus, jqXHR) {
-            jQuery('#my-coa-vw').html(response);
-            });
-        };
+
+
     });
 
 </script>
