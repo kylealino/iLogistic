@@ -35,8 +35,8 @@ $routes->post('md-attlogs-upld-data', 'MyAttLogsUpld::upld_data',['filter' => 'm
 $routes->get('metest-pdf-import', 'MeTest::pdf_import');
 
 //Quotation flow mock
-$routes->get('mycrm-quotation-dashb', 'MyQuotation::index');
-$routes->get('mycrm-quotation-entry', 'MyQuotation::quotation_entry');
+$routes->get('myquotation-dashb', 'MyQuotation::index');
+$routes->get('myquotation-entry', 'MyQuotation::quotation_entry');
 $routes->post('myquotation-sv', 'MyQuotation::quatation_sv');
 
 // Charges

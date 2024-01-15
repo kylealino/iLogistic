@@ -68,7 +68,7 @@ $mtkn_serv = $request->getVar('mtkn_serv');
                                                 <?php $nn = 1; foreach($rlist as $row): ?>
                                                 <tr>
                                                     
-                                                    <td nowrap="nowrap"><input type="checkbox"  class="mycheckbox green-cb fs-2" style="scale:1.3" data-id="<?=$row['charge_desc'];?>" value="<?=$row['charge_desc'];?>" checked></td>
+                                                    <td nowrap="nowrap"><input type="checkbox"  class="mycheckbox green-cb fs-2" style="scale:1.3" data-id="<?=$row['charge_desc'];?>" value="<?=$row['charge_desc'];?>"></td>
                                                     <td><?=$row['charge_desc'];?></td>
                                                     <td><?=$row['charge_type'];?></td>
                                                     <td><?=$row['charge_basis'];?></td>

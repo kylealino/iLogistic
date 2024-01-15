@@ -182,30 +182,30 @@ echo view('templates/meheader01');
                                 <div class="mt-3">
                                     <input type="hidden" id="rtp_type" value="">
                                     <h6 class="card-title p-0">Services:</h6>
-                                    <input type="text"  placeholder="Branch Name" id="branch_name" name="branch_name" class="branch_name form-control form-control-sm " required/>
+                                    <input type="text"  id="branch_name" name="branch_name" class="branch_name form-control form-control-sm " required/>
                                 </div>
                                 <div class="mt-3">
                                     <h6 class="card-title p-0">Quotation No:</h6>
-                                    <input type="text"  placeholder="Branch area" id="branch_area" name="branch_area" class="branch_area form-control form-control-sm " required/>
+                                    <input type="text"  id="branch_area" name="branch_area" class="branch_area form-control form-control-sm " required/>
                                 </div>
                                 <div class="mt-3">
                                     <h6 class="card-title p-0">Quoted By:</h6>
-                                    <input type="text"  placeholder="Branch area" id="branch_area" name="branch_area" class="branch_area form-control form-control-sm " required/>
+                                    <input type="text"  id="branch_area" name="branch_area" class="branch_area form-control form-control-sm " required/>
                                 </div>
                                 <div class="mt-3">
                                     <h6 class="card-title p-0">Quoted to:</h6>
-                                    <input type="text"  placeholder="Branch area" id="branch_area" name="branch_area" class="branch_area form-control form-control-sm " required/>
+                                    <input type="text"  id="branch_area" name="branch_area" class="branch_area form-control form-control-sm " required/>
                                 </div>
                             </div> 
                             <div class="col-sm-6 mx-auto p-4 rounded">
                                 <div class="mt-3">
                                     <input type="hidden" id="rtp_type" value="">
                                     <h6 class="card-title p-0">Show:</h6>
-                                    <input type="text"  placeholder="Branch Name" id="branch_name" name="branch_name" class="branch_name form-control form-control-sm " required/>
+                                    <input type="text"  id="branch_name" name="branch_name" class="branch_name form-control form-control-sm " required/>
                                 </div>
                                 <div class="mt-3">
                                     <h6 class="card-title p-0">Status:</h6>
-                                    <input type="text"  placeholder="Branch area" id="branch_area" name="branch_area" class="branch_area form-control form-control-sm " required/>
+                                    <input type="text"  id="branch_area" name="branch_area" class="branch_area form-control form-control-sm " required/>
                                 </div>
                                 <div class="mt-3">
                                     <h6 class="card-title p-0">Date:</h6>
@@ -234,10 +234,11 @@ echo view('templates/meheader01');
                                 <h3 class="h4 mb-0"> <i class="bi bi-journals"></i> Records </h3>
                             </div>
                             <div class="col-6 text-end">
-                                <button type="button" id="btn-processrecs" class="btn btn-success btn-sm m-0 rounded px-3 btn-processrecs" ><i class="bi bi-plus"></i> Add New Quotation </button>
-                                <button type="button" id="btn-processrecs" class="btn btn-danger btn-sm m-0 rounded px-3 btn-processrecs" ><i class="bi bi-trash3"></i> Delete Quotation </button>
-                                <button type="button" id="btn-processrecs" class="btn btn-warning btn-sm m-0 rounded px-3 btn-processrecs" ><i class="bi bi-printer"></i> Print Quotation </button>
-                                <button type="button" id="btn-processrecs" class="btn btn-info btn-sm m-0 rounded px-3 btn-processrecs" ><i class="bi bi-arrow-clockwise"></i> Reset </button>
+                                <button type="button" id="btn-processrecs" class="btn btn-success btn-sm mb-1 rounded px-3 btn-processrecs" onclick="redirectToURL()"><i class="bi bi-plus"></i> Add New Quotation </button>
+                                <button type="button" id="btn-processrecs" class="btn btn-danger btn-sm mb-1     rounded px-3 btn-processrecs" ><i class="bi bi-trash3"></i> Delete Quotation </button>
+                                <div class="w-100 d-sm-none"></div>
+                                <button type="button" id="btn-processrecs" class="btn btn-warning btn-sm mb-1    rounded px-3 btn-processrecs" ><i class="bi bi-printer"></i> Print Quotation </button>
+                                <button type="button" id="btn-processrecs" class="btn btn-info btn-sm mb-1   rounded px-3 btn-processrecs" ><i class="bi bi-arrow-clockwise"></i> Reset </button>
                             </div>
                         </div>
                     </div>
@@ -248,7 +249,7 @@ echo view('templates/meheader01');
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="table-responsive ">
-                                                <table class="table table-bordered table-hover table-sm text-center" id="tbl-transfer-verify-items-recs">
+                                                <table class="table table-striped  table-hover table-sm text-center" id="tbl-transfer-verify-items-recs">
                                                     <thead class="thead-dark">
                                                         <tr>
                                                             <th class="text-center">
@@ -287,3 +288,9 @@ echo view('templates/meheader01');
 <?php
 echo view('templates/mefooter01');
 ?>
+
+<script type="text/javascript">
+    function redirectToURL() {
+        window.location.href = '<?= site_url("mycrm-quotation-entry"); ?>';
+    }
+</script>
