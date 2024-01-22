@@ -60,7 +60,7 @@ $routes->post('myquotation-sv', 'MyQuotation::quatation_sv');
 $routes->get('mycrm-quotation-org-search', 'MyQuotation::quotation_org_search');
 
 //Leads
-$routes->get('mycrm-lead', 'MyLeads::index');
+$routes->get('mycrm-leads-entry', 'MyLeads::index');
 
 // Charges
 $routes->get('mymd-charges', 'Md_charges::index',['filter' => 'myauthuser']);
@@ -96,8 +96,3 @@ $routes->get('mymd-vehicle-type', 'MD_vehicle_type::index',['filter' => 'myauthu
 $routes->post('search-mymd-vehicle-type', 'MD_vehicle_type::recs',['filter' => 'myauthuser']);
 $routes->post('mymd-vehicle-type-profile', 'MD_vehicle_type::profile',['filter' => 'myauthuser']);
 $routes->post('mymd-vehicle-type-profile-save', 'MD_vehicle_type::profile_save',['filter' => 'myauthuser']);
-
-$routes->get('mymd-currency', 'MD_currency::index',['filter' => 'myauthuser']);
-$routes->post('search-mymd-currency', 'MD_currency::recs',['filter' => 'myauthuser']);
-$routes->post('mymd-currency-profile', 'MD_currency::profile',['filter' => 'myauthuser']);
-$routes->post('mymd-currency-profile-save', 'MD_currency::profile_save',['filter' => 'myauthuser']);

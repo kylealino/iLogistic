@@ -317,13 +317,7 @@ if($ntotal_segments > 0):
     $menu_collapsed_memasterdata = '';
 		$menu_show_memasterdata = " show";
     $submenu_active_memasterdata_vehicletype = 'class="active"';
-  } elseif($mebase_segment == 'mymd-currency'){
-    $menu_collapsed_memasterdata = '';
-		$menu_show_memasterdata = " show";
-    $submenu_active_memasterdata_currency = 'class="active"';
   }
-
-  
   
   //CRM
 endif;
@@ -338,8 +332,6 @@ $submenu_active_dashb = '';
 $submenu_active_mecrm_salesrally = '';
 $submenu_active_mecrm_prospect = '';
 $submenu_active_mecrm_lead = '';
-$submenu_active_mecrm_activity = '';
-$submenu_active_mecrm_visit_planning = '';
 $mebase_segment = $this->uri->getSegment(1);
 if($ntotal_segments > 0):
 	if($mebase_segment == 'mycrm-quotation-dashb') { 
@@ -369,15 +361,6 @@ if($ntotal_segments > 0):
   elseif($mebase_segment == 'mycrm-lead'){
     $menu_collapsed_mecrm = '';
     $submenu_active_mecrm_lead = 'class="active"';
-    $menu_show_mecrm = " show";
-  }
-  elseif($mebase_segment == 'mycrm-activity'){
-    $menu_collapsed_mecrm = '';
-    $submenu_active_mecrm_activity = 'class="active"';
-    $menu_show_mecrm = " show";
-  } elseif($mebase_segment == 'mycrm-visit_planning'){
-    $menu_collapsed_mecrm = '';
-    $submenu_active_mecrm_visit_planning = 'class="active"';
     $menu_show_mecrm = " show";
   }
 
@@ -464,11 +447,6 @@ endif;
               <i class="bi bi-circle"></i><span>Vehicle Type</span>
             </a>
           </li>
-          <li>
-            <a href="<?=site_url();?>mymd-currency" <?=$submenu_active_memasterdata_currency;?>>
-              <i class="bi bi-circle"></i><span>Currency</span>
-            </a>
-          </li>
         </ul>
       </li><!-- End Master Data Nav -->
 
@@ -506,19 +484,19 @@ endif;
             </a>  
           </li>
           <li>
-            <a href="<?=site_url();?>mycrm-activity" <?=$submenu_active_activity;?>>
-              <i class="bi bi-circle"></i><span>Activity</span>
-            </a>  
-          </li>
-          <li>
-            <a href="<?=site_url();?>mycrm-visit-planning" <?=$submenu_active_mecrm_visit_planning;?>>
-              <i class="bi bi-circle"></i><span>Visit Planning</span>
-            </a>  
-          </li>
-          <li>
             <a href="<?=site_url();?>mycrm-quotation-dashb" <?=$submenu_active_dashb;?>>
-              <i class="bi bi-circle"></i><span>Quotation</span>
+              <i class="bi bi-circle"></i><span>Quotation Dashboard</span>
             </a>  
+          </li>
+          <li>
+            <a href="<?=site_url();?>mycrm-quotation-entry" <?=$submenu_active_entry;?>>
+              <i class="bi bi-circle"></i><span>Quotation Entry</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?=site_url();?>mycrm-leads-entry" <?=$submenu_active_lead_entry;?>>
+              <i class="bi bi-circle"></i><span>Lead Entry</span>
+            </a>
           </li>
         </ul>
       </li><!-- End Quotation Nav -->

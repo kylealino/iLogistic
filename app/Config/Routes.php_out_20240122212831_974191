@@ -60,7 +60,7 @@ $routes->post('myquotation-sv', 'MyQuotation::quatation_sv');
 $routes->get('mycrm-quotation-org-search', 'MyQuotation::quotation_org_search');
 
 //Leads
-$routes->get('mycrm-lead', 'MyLeads::index');
+$routes->get('mycrm-leads-entry', 'MyLeads::index');
 
 // Charges
 $routes->get('mymd-charges', 'Md_charges::index',['filter' => 'myauthuser']);

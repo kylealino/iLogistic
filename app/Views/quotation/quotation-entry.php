@@ -5,6 +5,61 @@ $mylibzsys = model('App\Models\MyLibzSysModel');
 echo view('templates/meheader01');
 
 ?>
+  <style>
+    .timeline {
+      position: relative;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+
+    .timeline-item:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #007bff;
+      transform: translateY(-50%);
+    }
+
+    .badge {
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 50%;
+      padding: 10px;
+    }
+ /* Add this style to the existing styles */
+    .card-body {
+        overflow-x: auto; /* or overflow-x: scroll; */
+    }
+
+    /* Additional styles to ensure the timeline fits within the card body */
+    .timeline {
+        white-space: nowrap;
+        overflow: auto;
+        position: relative; /* Added position: relative */
+    }
+
+    .timeline:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #007bff;
+        transform: translateY(-50%);
+    }
+
+    .timeline-item {
+        display: inline-block;
+        white-space: normal;
+    }
+  </style>
 
 <main id="main">
 
@@ -13,7 +68,8 @@ echo view('templates/meheader01');
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?=site_url();?>">Home</a></li>
-                <li class="breadcrumb-item active">Quotation Entry</li>
+                <li class="breadcrumb-item"><a href="<?=site_url();?>mycrm-quotation-dashb">Dashboard</a>
+                <li class="breadcrumb-item active">Entry</li>
             </ol>
             </nav>
     </div><!-- End Page Title -->
@@ -39,30 +95,54 @@ echo view('templates/meheader01');
                                 <div class="mt-3">
                                     <input type="hidden" id="rtp_type" value="">
                                     <h6 class="card-title p-0">Quotation No:</h6>
-                                    <input type="text"  id="branch_name" name="branch_name" class="branch_name form-control form-control-sm disabled" />
+                                    <input type="text"  id="quotation_trxno" name="quotation_trxno" class="quotation_trxno form-control form-control-sm disabled" />
                                 </div>
                                 <div class="mt-3">
                                     <h6 class="card-title p-0">Organization:</h6>
-                                    <input type="text"  id="branch_area" name="branch_area" class="branch_area form-control form-control-sm " required/>
+                                    <input type="text"  id="organization" name="organization" class="form-control form-control-sm " required/>
+                                </div>
+                                <div class="mt-3">
+                                    <h6 class="card-title p-0">Address:</h6>
+                                    <input type="text"  id="org_address" name="org_address" class="org_address form-control form-control-sm " required/>
                                 </div>
                                 <div class="mt-3">
                                     <h6 class="card-title p-0">Contact Person:</h6>
-                                    <input type="text"  id="branch_area" name="branch_area" class="branch_area form-control form-control-sm " required/>
+                                    <input type="text"  id="contact_prsn" name="contact_prsn" class="contact_prsn form-control form-control-sm " required/>
                                 </div>
                                 <div class="mt-3">
                                     <div class="row">
                                         <div class="col-sm-6 mb-1">
                                             <h6 class="card-title p-0">Quoted By:</h6>
-                                            <input type="text"  id="branch_area" name="branch_area" class="branch_area form-control form-control-sm mb-1" required/>
+                                            <select id="optn_quotedby" class="form-control form-control-sm mb-1">
+                                                <option value=""></option>
+                                                <option value="">Mae Turingan</option>
+                                            </select>
                                         </div> 
                                         <div class="col-sm-6 mb-1">
                                             <h6 class="card-title p-0">Sales Coor:</h6>
-                                            <select id="organizationSelect" class="form-control form-control-sm mb-1">
-                                                <option value="">Select Coordinator</option>
-                                                <option value="org1">Test</option>
+                                            <select id="optn_salescoor" class="form-control form-control-sm mb-1">
+                                                <option value=""></option>
+                                                <option value="">Mae Turingan</option>
                                             </select>
                                         </div>
                                     </div> 
+                                </div>
+                                <div class="mt-3">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h6 class="card-title p-0">Lead:</h6>
+                                            <div class="d-flex">
+                                                <div class="col-sm-8">
+                                                    <input type="text" id="quotation_trxno" name="quotation_trxno" class="quotation_trxno form-control form-control-sm" />
+                                                </div>
+                                                <form action="<?=site_url();?>mycrm-lead" method="get" target="_blank">
+                                                    <div class="col-sm-4">
+                                                        <button type="submit" class="btn btn-info btn-sm m-0 rounded px-3 btn-processrecs">New</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div> 
                             <div class="col-sm-6 mx-auto p-4 rounded">
@@ -70,11 +150,11 @@ echo view('templates/meheader01');
                                     <div class="row">
                                         <div class="col-sm-6 mb-1">
                                             <h6 class="card-title p-0 mb-1">Valid From:</h6>
-                                            <input type="date"  placeholder="Date from" id="date_from" name="date_from" class="branch_name form-control form-control-sm mb-1" required/>
+                                            <input type="date"  placeholder="Date from" id="validfrm_date" name="validfrm_date" class="form-control form-control-sm mb-1" required/>
                                         </div>
                                         <div class="col-sm-6 mb-1">
                                             <h6 class="card-title p-0 mb-1">Valid Till:</h6>
-                                            <input type="date"  placeholder="Date from" id="date_from" name="date_from" class="branch_name form-control form-control-sm mb-1" required/>
+                                            <input type="date"  placeholder="Date from" id="validto_date" name="validto_date" class="form-control form-control-sm mb-1" required/>
                                         </div> 
                                     </div> 
                                 </div>
@@ -82,15 +162,16 @@ echo view('templates/meheader01');
                                     <div class="row">
                                         <div class="col-sm-6 mb-1">
                                             <h6 class="card-title p-0">Usability:</h6>
-                                            <select id="organizationSelect" class="form-control form-control-sm mb-1">
-                                                <option value="">Single</option>
-                                                <option value="org1">Test</option>
+                                            <select id="optn_usability" class="form-control form-control-sm mb-1">
+                                                <option value=""></option>
+                                                <option value="single">Single</option>
+                                                <option value="multiple">Multiple</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-6 mb-1">
                                             <h6 class="card-title p-0">Version:</h6>
-                                            <select id="organizationSelect" class="form-control form-control-sm disabled">
-                                                <option value="" class="disabled"></option>
+                                            <select id="optn_version" class="form-control form-control-sm disabled">
+                                                <option value=""></option>
                                                 <option value="org1">Test</option>
                                             </select>
                                         </div> 
@@ -99,23 +180,27 @@ echo view('templates/meheader01');
                                 <div class="mt-3">
                                     <input type="hidden" id="rtp_type" value="">
                                     <h6 class="card-title p-0">Party Role:</h6>
-                                    <select id="organizationSelect" class="form-control form-control-sm disabled">
-                                        <option value="" class="disabled">Select Role</option>
-                                        <option value="org1">Test</option>
+                                    <select id="optn_partyrole" class="form-control form-control-sm disabled">
+                                        <option value=""></option>
+                                        <option value="shipper">Shipper</option>
+                                        <option value="consignee">Consignee</option>
+                                        <option value="dest_agent">Dest. Agent</option>
+                                        <option value="origin_agent">Origin Agent</option>
+                                        <option value="customer">Customer</option>
                                     </select>
                                 </div>
                                 <div class="mt-3">
                                     <div class="row">
                                         <div class="col-sm-6 mb-1">
                                             <h6 class="card-title p-0 mb-1">Cargo Status:</h6>
-                                            <select id="organizationSelect" class="form-control form-control-sm mb-1">
-                                                <option value="">Ready By</option>
-                                                <option value="org1">Test</option>
+                                            <select id="optn_cargostatus" class="form-control form-control-sm mb-1">
+                                                <option value="ready_by">Ready By</option>
+                                                <option value="ready">Ready</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-6 mb-1">
                                             <h6 class="card-title p-0">Ready Date:</h6>
-                                            <input type="date"  placeholder="Date from" id="date_from" name="date_from" class="branch_name form-control form-control-sm " required/>
+                                            <input type="date"  placeholder="Date from" id="ready_date" name="ready_date" class=" form-control form-control-sm " required/>
                                         </div> 
                                     </div> 
                                 </div>
@@ -123,8 +208,12 @@ echo view('templates/meheader01');
                                     <input type="hidden" id="rtp_type" value="">
                                     <h6 class="card-title p-0">Location:</h6>
                                     <select id="organizationSelect" class="form-control form-control-sm">
-                                        <option value="">Select Location</option>
-                                        <option value="org1">Test</option>
+                                        <option value=""></option>
+                                        <option value="admin">Admin</option>
+                                        <option value="brokerage">Brokerage</option>
+                                        <option value="forwarding">Forwarding</option>
+                                        <option value="trucking">Trucking</option>
+                                        <option value="warehouse">Warehouse</option>
                                     </select>
                                 </div>
                             </div> 
@@ -156,38 +245,42 @@ echo view('templates/meheader01');
                     </ul>
                     <div class="tab-content" id="myTabArticleContent">
                         <div class="tab-pane fade show active" id="artclist" role="tabpanel" aria-labelledby="artclist-tab">
-                            <div id="mydshbrdrecs" class="text-center p-0 rounded-3 border-dotted p-4 ">
-                                <div class="box box-primary ">
-                                    <div class="box-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="table-responsive ">
-                                                    <table class="table table-striped  table-hover table-sm text-center" id="tbl-transfer-verify-items-recs">
-                                                        <thead class="thead-dark">
-                                                            <tr>
-                                                                <th>Service Type</th>
-                                                                <th>Charges</th>
-                                                                <th>Charge Name</th>
-                                                                <th>Charge Type</th>
-                                                                <th>Basis</th>
-                                                                <th>Rate Type</th>
-                                                                <th>Currency</th>
-                                                                <th>Rate</th>
-                                                                <th>Amount</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td colspan="18">No data was found.</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-12">
+                                    <h6 class="card-title d-flex justify-content-center">Line of Business:</h6>
+                                    <h6 class="card-title d-flex justify-content-center">Sea Import</h6>
+                                </div>
+                                <div class="col-md-8 col-sm-12">
+                                    <h6 class="card-title d-flex justify-content-center">Description:</h6>
+                                    <div class="timeline">
+                                        <div class="timeline-item">
+                                            <span class="badge my-3">ORIGIN</span>
+                                            <p>Yokohama(JPYOK)</p>
                                         </div>
+                                        <div class="timeline-item">
+                                            <span class="badge my-3">PLR</span>
+                                            <p>Yokohama(JPYOK)</p>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <span class="badge my-3">POL</span>
+                                            <p>Yokohama(JPYOK)</p>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <span class="badge my-3">POD</span>
+                                            <p>Manila North Harbour(PH/MNH)</p>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <span class="badge my-3">PLD</span>
+                                            <p>Manila North Harbour(PH/MNH)</p>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <span class="badge my-3">DESTINATION</span>
+                                            <p>Manila North Harbour(PH/MNH)</p>
+                                        </div>
+                                        <!-- Add more timeline items as needed -->
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="artcprofile" role="tabpanel" aria-labelledby="artprofile-tab">...</div>
                         <div class="tab-pane fade" id="artm-importdata-tmpl" role="tabpanel" aria-labelledby="artm-importdata-tmpl-tab">---</div>
@@ -201,4 +294,47 @@ echo view('templates/meheader01');
 <?php
 echo view('templates/mefooter01');
 ?>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        jQuery('#organization')
+            // don't navigate away from the field on tab when selecting an item
+            .bind( 'keydown', function( event ) {
+                if ( event.keyCode === jQuery.ui.keyCode.TAB &&
+                    jQuery( this ).data( 'ui-autocomplete' ).menu.active ) { 
+                    event.preventDefault();
+                }
+                if( event.keyCode === jQuery.ui.keyCode.TAB ) {
+                    event.preventDefault();
+                }
+            })
+            .autocomplete({
+                minLength: 0,
+                source: '<?= site_url(); ?>mycrm-quotation-org-search',
+                focus: function() {
+                    // prevent value inserted on focus
+                    return false;
+                },
+                search: function(oEvent, oUi) {
+                    var sValue = jQuery(oEvent.target).val();
+
+                },
+                select: function( event, ui ) {
+                    var terms = ui.item.value;
+                    jQuery('#organization').val(terms);
+                    jQuery(this).autocomplete('search', jQuery.trim(terms));
+                    return false;
+                }
+            })
+            .click(function() {
+                var terms = this.value;
+                jQuery(this).autocomplete('search', jQuery.trim(terms));
+        });	//end organization
+    });
+    
+</script>

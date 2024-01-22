@@ -14,6 +14,7 @@ echo view('templates/meheader01');
         <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?=site_url();?>">Home</a></li>
                 <li class="breadcrumb-item active">Quotation Dashboard</li>
+                <li class="breadcrumb-item active"><a href="<?=site_url();?>mycrm-quotation-entry">Entry</a></li>
             </ol>
 		</nav>
 	</div><!-- End Page Title -->

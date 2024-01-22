@@ -49,18 +49,11 @@ $routes->get('md-attlogs-upld', 'MyAttLogsUpld::index',['filter' => 'myauthuser'
 $routes->post('md-attlogs-upld-data', 'MyAttLogsUpld::upld_data',['filter' => 'myauthuser']);
 $routes->get('metest-pdf-import', 'MeTest::pdf_import');
 
-//crm
-$routes->get('mycrm-sales-rally', 'MyCRM_SalesRally::index',['filter' => 'myauthuser']);
-$routes->get('mycrm-prospect', 'MyCRM_Prospect::index',['filter' => 'myauthuser']);
-
 //Quotation flow mock
 $routes->get('mycrm-quotation-dashb', 'MyQuotation::index');
 $routes->get('mycrm-quotation-entry', 'MyQuotation::quotation_entry');
 $routes->post('myquotation-sv', 'MyQuotation::quatation_sv');
 $routes->get('mycrm-quotation-org-search', 'MyQuotation::quotation_org_search');
-
-//Leads
-$routes->get('mycrm-lead', 'MyLeads::index');
 
 // Charges
 $routes->get('mymd-charges', 'Md_charges::index',['filter' => 'myauthuser']);
@@ -87,17 +80,7 @@ $routes->post('search-mymd-units', 'MD_units::recs',['filter' => 'myauthuser']);
 $routes->post('mymd-units-profile', 'MD_units::profile',['filter' => 'myauthuser']);
 $routes->post('mymd-units-profile-save', 'MD_units::profile_save',['filter' => 'myauthuser']);
 
-$routes->get('mymd-container', 'MD_container::index',['filter' => 'myauthuser']);
-$routes->post('search-mymd-container', 'MD_container::recs',['filter' => 'myauthuser']);
-$routes->post('mymd-container-profile', 'MD_container::profile',['filter' => 'myauthuser']);
-$routes->post('mymd-container-profile-save', 'MD_container::profile_save',['filter' => 'myauthuser']);
-
-$routes->get('mymd-vehicle-type', 'MD_vehicle_type::index',['filter' => 'myauthuser']);
-$routes->post('search-mymd-vehicle-type', 'MD_vehicle_type::recs',['filter' => 'myauthuser']);
-$routes->post('mymd-vehicle-type-profile', 'MD_vehicle_type::profile',['filter' => 'myauthuser']);
-$routes->post('mymd-vehicle-type-profile-save', 'MD_vehicle_type::profile_save',['filter' => 'myauthuser']);
-
-$routes->get('mymd-currency', 'MD_currency::index',['filter' => 'myauthuser']);
-$routes->post('search-mymd-currency', 'MD_currency::recs',['filter' => 'myauthuser']);
-$routes->post('mymd-currency-profile', 'MD_currency::profile',['filter' => 'myauthuser']);
-$routes->post('mymd-currency-profile-save', 'MD_currency::profile_save',['filter' => 'myauthuser']);
+$routes->get('mymd-containter', 'MD_containter::index',['filter' => 'myauthuser']);
+$routes->post('search-mymd-containter', 'MD_containter::recs',['filter' => 'myauthuser']);
+$routes->post('mymd-containter-profile', 'MD_containter::profile',['filter' => 'myauthuser']);
+$routes->post('mymd-containter-profile-save', 'MD_containter::profile_save',['filter' => 'myauthuser']);
